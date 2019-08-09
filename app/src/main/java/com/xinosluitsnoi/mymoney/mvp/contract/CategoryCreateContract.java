@@ -1,9 +1,6 @@
 package com.xinosluitsnoi.mymoney.mvp.contract;
 
 import com.xinosluitsnoi.mymoney.domain.entity.Category;
-import com.xinosluitsnoi.mymoney.domain.entity.Transaction;
-
-import java.util.List;
 
 import androidx.annotation.NonNull;
 
