@@ -23,11 +23,11 @@ public interface SettingsCurrencyContract {
 
         void setSelectedCurrency(@NonNull Currency currency);
 
-        void showDialogScreen();
+        void showNewCurrencyScreen();
     }
 
     interface Router extends BaseContract.Router {
 
-        void showDialogScreen();
+        void showNewCurrencyScreen();
     }
 }
