@@ -6,11 +6,11 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 
-import static java.lang.annotation.RetentionPolicy.SOURCE;
+import java.lang.annotation.RetentionPolicy;
 
 public class Category {
 
-    private int id;
+    private long id;
 
     private String title;
 
@@ -20,7 +20,7 @@ public class Category {
     @Type.Mode
     private int type;
 
-    public Category(int id) {
+    public Category(long id) {
         this.id = id;
     }
 
@@ -30,18 +30,18 @@ public class Category {
         this.type = type;
     }
 
-    public Category(int id, @NonNull String title, @ColorInt int color, @Type.Mode int type) {
+    public Category(long id, @NonNull String title, @ColorInt int color, @Type.Mode int type) {
         this.id = id;
         this.title = title;
         this.color = color;
         this.type = type;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -74,7 +74,7 @@ public class Category {
 
     public static class Type {
 
-        @Retention(SOURCE)
+        @Retention(RetentionPolicy.SOURCE)
         @IntDef({
                         Mode.ALL,
                         Mode.INCOME,

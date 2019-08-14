@@ -9,7 +9,7 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 public class Transaction {
 
-    private int id;
+    private long id;
 
     private double total;
 
@@ -18,39 +18,39 @@ public class Transaction {
 
     private Category category;
 
-    private String description;
+    private long date;
 
-    public Transaction(int id) {
+    public Transaction(long id) {
         this.id = id;
     }
 
     public Transaction(double total,
                        @Type.Mode int type,
                        @NonNull Category category,
-                       @NonNull String description) {
+                       long date) {
         this.total = total;
         this.type = type;
         this.category = category;
-        this.description = description;
+        this.date = date;
     }
 
-    public Transaction(int id,
+    public Transaction(long id,
                        double total,
                        @Type.Mode int type,
                        @NonNull Category category,
-                       @NonNull String description) {
+                       long date) {
         this.id = id;
         this.total = total;
         this.type = type;
         this.category = category;
-        this.description = description;
+        this.date = date;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -80,13 +80,12 @@ public class Transaction {
         this.category = category;
     }
 
-    @NonNull
-    public String getDescription() {
-        return description;
+    public long getDate() {
+        return date;
     }
 
-    public void setDescription(@NonNull String description) {
-        this.description = description;
+    public void setDate(long date) {
+        this.date = date;
     }
 
     public static class Type {

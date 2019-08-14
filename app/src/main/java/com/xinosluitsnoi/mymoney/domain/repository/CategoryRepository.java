@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 public interface CategoryRepository {
 
     @Nullable
-    Category getCategory(int id);
+    Category getCategory(long id);
 
     @NonNull
     List<Category> getAll(@Category.Type.Mode int type);

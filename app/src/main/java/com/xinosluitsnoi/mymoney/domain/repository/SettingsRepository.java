@@ -26,4 +26,7 @@ public interface SettingsRepository {
     Theme getSelectedTheme();
 
     void setSelectedTheme(@NonNull Theme theme);
+
+    @NonNull
+    String getThemeTitleById(@Theme.Type.Mode int theme);
 }

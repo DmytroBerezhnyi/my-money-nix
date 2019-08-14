@@ -4,22 +4,11 @@ import androidx.annotation.NonNull;
 
 public class Currency {
 
-    private int id;
-
     @NonNull
     private String title;
 
-    public Currency(int id, @NonNull String title) {
-        this.id = id;
+    public Currency(@NonNull String title) {
         this.title = title;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @NonNull

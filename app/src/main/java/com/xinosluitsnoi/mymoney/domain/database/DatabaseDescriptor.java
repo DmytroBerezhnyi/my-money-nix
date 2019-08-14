@@ -28,7 +28,7 @@ public final class DatabaseDescriptor {
                         TITLE + " TEXT NOT NULL," +
                         TOTAL + " REAL NOT NULL," +
                         "FOREIGN KEY(" + CATEGORY + ") REFERENCES " +
-                        TABLE_NAME + "(" + _ID + ")," +
+                        CategoryEntry.TABLE_NAME + "(" + _ID + ")," +
                         DATE + " INTEGER(8) NOT NULL," +
                         TYPE + " INTEGER(1) NOT NULL);";
 
@@ -40,7 +40,7 @@ public final class DatabaseDescriptor {
 
         public static final String TABLE_NAME = "category";
 
-        public static final String NAME = "name";
+        public static final String TITLE = "title";
 
         public static final String COLOR = "color";
 
@@ -49,7 +49,7 @@ public final class DatabaseDescriptor {
         public static final String CREATE_TABLE =
                 "CREATE TABLE " + TABLE_NAME + " (" +
                         _ID + " INTEGER PRIMARY KEY, " +
-                        NAME + " TEXT NOT NULL," +
+                        TITLE + " TEXT NOT NULL," +
                         COLOR + " REAL NOT NULL," +
                         TYPE + " INTEGER(1) NOT NULL);";
 

@@ -8,22 +8,11 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 public class Theme {
 
-    private int id;
-
     @Type.Mode
     private int theme;
 
-    public Theme(int id, int theme) {
-        this.id = id;
+    public Theme(@Type.Mode int theme) {
         this.theme = theme;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Type.Mode
