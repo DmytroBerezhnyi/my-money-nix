@@ -1,6 +1,6 @@
 package com.xinosluitsnoi.mymoney.mvp.contract;
 
-public interface MainActivityContract {
+public interface MainContract {
 
     interface View extends BaseContract.View {
 

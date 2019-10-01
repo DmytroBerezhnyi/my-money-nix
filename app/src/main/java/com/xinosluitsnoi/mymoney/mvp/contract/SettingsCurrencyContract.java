@@ -10,9 +10,9 @@ public interface SettingsCurrencyContract {
 
     interface View extends BaseContract.View {
 
-        void showSelectedCurrency(@NonNull Currency currency);
+        void showSelectedCurrency(int currencyIndex);
 
-        void showCurrencyList(@NonNull List<Currency> currencies);
+        void showCurrencyList(@NonNull List<Currency> currencies, int currencyIndex);
     }
 
     interface Presenter extends BaseContract.Presenter<View, Router> {
@@ -21,7 +21,7 @@ public interface SettingsCurrencyContract {
 
         void loadSelectedCurrency();
 
-        void setSelectedCurrency(@NonNull Currency currency);
+        void setSelectedCurrency(int currencyIndex);
 
         void showNewCurrencyScreen();
     }

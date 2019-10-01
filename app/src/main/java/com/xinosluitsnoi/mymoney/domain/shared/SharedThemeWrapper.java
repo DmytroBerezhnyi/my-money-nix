@@ -37,18 +37,18 @@ public class SharedThemeWrapper {
 
     @NonNull
     public Theme getSelectedTheme() {
-        return new Theme(preferences.getInt(THEME_SELECTED, Theme.Type.Mode.SYSTEM));
+        Theme theme = new Theme(preferences.getInt(THEME_SELECTED, Theme.Type.Mode.SYSTEM));
+        theme.setTitle(getThemeTitle(theme));
+        return theme;
     }
 
     public void setSelectedTheme(@NonNull Theme theme) {
-        preferences.edit()
-                   .putInt(THEME_SELECTED, theme.getTheme())
-                   .apply();
+        preferences.edit().putInt(THEME_SELECTED, theme.getTheme()).apply();
     }
 
     @NonNull
-    public String getThemeTitleById(@Theme.Type.Mode int theme) {
-        switch (theme) {
+    public String getThemeTitle(@NonNull Theme theme) {
+        switch (theme.getTheme()) {
             case Theme.Type.Mode.SYSTEM:
                 return resources.getString(R.string.system);
             case Theme.Type.Mode.DAY:

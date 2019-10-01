@@ -1,6 +1,8 @@
 package com.xinosluitsnoi.mymoney.ui.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.ViewGroup;
 
@@ -22,16 +24,21 @@ public abstract class BaseActivity<P extends BaseContract.Presenter>
 
     private static final String TAG = BaseActivity.class.getSimpleName();
 
+    private SharedPreferences sharedPreferences;
+
     private ViewGroup container;
 
     @NonNull
-    private P presenter = createPresenter();
+    private P presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         container = findViewById(getContainerId());
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        presenter = createPresenter();
         getPresenter().attach(this);
     }
 
@@ -55,11 +62,17 @@ public abstract class BaseActivity<P extends BaseContract.Presenter>
         return Objects.requireNonNull(presenter);
     }
 
+    @NonNull
+    public SharedPreferences getSettingsPreferences() {
+        return sharedPreferences;
+    }
+
     @Override
     public void onError(@Nullable Throwable throwable) {
         String message = throwable == null ? "Something went wrong" : throwable.getMessage();
 
-        Snackbar.make(container, message, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(container, message, Snackbar.LENGTH_LONG)
+                .show();
         Log.e(TAG, "onError: ", throwable);
     }
 
@@ -67,11 +80,11 @@ public abstract class BaseActivity<P extends BaseContract.Presenter>
     protected abstract int getLayoutId();
 
     @IdRes
-    protected abstract int getContainerId();
+    public abstract int getContainerId();
 
     @StringRes
     protected abstract int getToolbarTitleResource();
 
     @NonNull
-    abstract P createPresenter();
+    protected abstract P createPresenter();
 }
