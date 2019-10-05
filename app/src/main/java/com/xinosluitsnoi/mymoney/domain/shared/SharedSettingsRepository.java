@@ -1,6 +1,5 @@
 package com.xinosluitsnoi.mymoney.domain.shared;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 
@@ -14,15 +13,16 @@ import androidx.annotation.NonNull;
 
 public class SharedSettingsRepository implements SettingsRepository {
 
+    public static final String APP_PREFERENCES  = "mySettings";
+
     private final SharedPreferences preferences;
 
     private final SharedCurrencyWrapper sharedCurrencyWrapper;
 
     private final SharedThemeWrapper sharedThemeWrapper;
 
-    public SharedSettingsRepository(@NonNull Context context,
+    public SharedSettingsRepository(@NonNull Resources resources,
                                     @NonNull SharedPreferences preferences) {
-        Resources resources = context.getResources();
         this.preferences = preferences;
         sharedCurrencyWrapper = new SharedCurrencyWrapper(preferences, resources);
         sharedThemeWrapper = new SharedThemeWrapper(preferences, resources);
@@ -34,15 +34,14 @@ public class SharedSettingsRepository implements SettingsRepository {
         return sharedCurrencyWrapper.getCurrencyList();
     }
 
-    @NonNull
     @Override
-    public Currency getSelectedCurrency() {
+    public int getSelectedCurrency() {
         return sharedCurrencyWrapper.getSelectedCurrency();
     }
 
     @Override
-    public void setSelectedCurrency(@NonNull Currency currency) {
-        sharedCurrencyWrapper.setSelectedCurrency(currency);
+    public void setSelectedCurrency(int currencyIndex) {
+        sharedCurrencyWrapper.setSelectedCurrency(currencyIndex);
     }
 
     @Override
@@ -69,7 +68,7 @@ public class SharedSettingsRepository implements SettingsRepository {
 
     @NonNull
     @Override
-    public String getThemeTitleById(@Theme.Type.Mode int theme) {
-        return sharedThemeWrapper.getThemeTitleById(theme);
+    public String getThemeTitleById(@NonNull Theme theme) {
+        return sharedThemeWrapper.getThemeTitle(theme);
     }
 }

@@ -12,10 +12,9 @@ public interface SettingsRepository {
     @NonNull
     List<Currency> getCurrencyList();
 
-    @NonNull
-    Currency getSelectedCurrency();
+    int getSelectedCurrency();
 
-    void setSelectedCurrency(@NonNull Currency currency);
+    void setSelectedCurrency(int selectedCurrency);
 
     void addCurrency(@NonNull Currency currency);
 
@@ -28,5 +27,5 @@ public interface SettingsRepository {
     void setSelectedTheme(@NonNull Theme theme);
 
     @NonNull
-    String getThemeTitleById(@Theme.Type.Mode int theme);
+    String getThemeTitleById(@NonNull Theme theme);
 }

@@ -48,19 +48,13 @@ public class SharedCurrencyWrapper {
         return currencyFromSharedMapper.map(Objects.requireNonNull(currencies));
     }
 
-    @NonNull
-    public Currency getSelectedCurrency() {
-
-        String title = preferences.getString(SELECTED_CURRENCY,
-                                             currencyFromSharedMapper.map(getDefaultCurrencies())
-                                                                     .get(0)
-                                                                     .getTitle());
-        return new Currency(Objects.requireNonNull(title));
+    public int getSelectedCurrency() {
+        return preferences.getInt(SELECTED_CURRENCY, 0);
     }
 
-    public void setSelectedCurrency(@NonNull Currency currency) {
+    public void setSelectedCurrency(int currencyIndex) {
         preferences.edit()
-                   .putString(SELECTED_CURRENCY, currency.getTitle())
+                   .putInt(SELECTED_CURRENCY, currencyIndex)
                    .apply();
     }
 
@@ -72,6 +66,7 @@ public class SharedCurrencyWrapper {
                    .apply();
     }
 
+    @NonNull
     private String getDefaultCurrencies() {
         return resources.getString(R.string.default_currencies);
     }

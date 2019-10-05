@@ -1,26 +1,23 @@
 package com.xinosluitsnoi.mymoney.ui.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.xinosluitsnoi.mymoney.mvp.contract.BaseContract;
 import com.xinosluitsnoi.mymoney.ui.activity.BaseActivity;
 
 import java.util.Objects;
 
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.DialogFragment;
 
-public abstract class BaseFragment<P extends BaseContract.Presenter> extends Fragment
+public abstract class BaseDialog<P extends BaseContract.Presenter> extends DialogFragment
         implements BaseContract.View {
 
-    private static final String TAG = BaseFragment.class.getSimpleName();
+    private static final String TAG = BaseDialog.class.getSimpleName();
 
     @Nullable
     private P presenter;
@@ -29,32 +26,13 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Fra
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = createPresenter();
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(getLayoutId(), container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         getPresenter().attach(this);
-        invalidateToolbarTitle();
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
         getPresenter().detach();
-    }
-
-    @NonNull
-    public CharSequence getToolbarTitle() {
-        return getString(getToolbarTitleResource());
     }
 
     @Override
@@ -85,29 +63,23 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Fra
     }
 
     @NonNull
-    protected P getPresenter() {
-        return Objects.requireNonNull(presenter);
-    }
-
-    protected void invalidateToolbarTitle() {
-        if (getActivity() != null) {
-            requireBaseActivity().setTitle(getToolbarTitle());
-        } else {
-            Log.e(TAG, "getActivity(); returns null. Couldn't call invalidateToolbarTitle();");
-        }
-    }
-
-    @NonNull
     protected BaseActivity requireBaseActivity() {
         return (BaseActivity) requireActivity();
     }
 
     @StringRes
-    public abstract int getToolbarTitleResource();
+    protected abstract int getDialogTitle();
 
-    @LayoutRes
-    protected abstract int getLayoutId();
+    @NonNull
+    protected P getPresenter() {
+        return Objects.requireNonNull(presenter);
+    }
 
     @NonNull
     protected abstract P createPresenter();
+
+    public interface MyDialogCloseListener {
+
+        public void handleDialogClose();
+    }
 }
