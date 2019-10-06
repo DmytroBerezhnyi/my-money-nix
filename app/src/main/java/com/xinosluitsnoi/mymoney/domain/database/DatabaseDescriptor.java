@@ -10,7 +10,7 @@ public final class DatabaseDescriptor {
 
     public static final class TransactionEntry implements BaseColumns {
 
-        public static final String TABLE_NAME = "transaction";
+        public static final String TABLE_NAME = "mtransaction";
 
         public static final String TOTAL = "total";
 
@@ -22,15 +22,18 @@ public final class DatabaseDescriptor {
 
         public static final String TYPE = "type";
 
+        public static final String fk_category = "fk_categories";
+
         public static final String CREATE_TABLE =
                 "CREATE TABLE " + TABLE_NAME + " (" +
                         _ID + " INTEGER PRIMARY KEY, " +
                         TITLE + " TEXT NOT NULL," +
                         TOTAL + " REAL NOT NULL," +
-                        "FOREIGN KEY(" + CATEGORY + ") REFERENCES " +
-                        CategoryEntry.TABLE_NAME + "(" + _ID + ")," +
                         DATE + " INTEGER(8) NOT NULL," +
-                        TYPE + " INTEGER(1) NOT NULL);";
+                        TYPE + " INTEGER(1) NOT NULL," +
+                        CATEGORY + " INTEGER," +
+                        "CONSTRAINT " + fk_category + " FOREIGN KEY(" + CATEGORY + ") REFERENCES " +
+                        CategoryEntry.TABLE_NAME + "(" + _ID + "));";
 
         public static final String SQL_DELETE_ENTRIES =
                 "DROP TABLE IF EXISTS " + TABLE_NAME;

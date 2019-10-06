@@ -10,7 +10,7 @@ public class SettingsCurrencyPresenter
         extends BasePresenter<SettingsCurrencyContract.View, SettingsCurrencyContract.Router>
         implements SettingsCurrencyContract.Presenter {
 
-    @Nullable
+    @NonNull
     private final SettingsRepository settingsRepository;
 
     public SettingsCurrencyPresenter(@NonNull SettingsCurrencyContract.Router router,

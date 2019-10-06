@@ -21,6 +21,7 @@ public abstract class BasePagerAdapter extends FragmentPagerAdapter {
     @NonNull
     private final List<BasePagerFragment> basePagerFragmentList = getFragmentList();
 
+    // FIXME: 27.10.19 deprecated super call
     public BasePagerAdapter(@NonNull Context context, @NonNull FragmentManager fragmentManager) {
         super(fragmentManager);
 

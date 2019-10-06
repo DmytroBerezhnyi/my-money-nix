@@ -11,6 +11,8 @@ public interface CategoryCreateContract {
         void showInvalidTitle();
 
         void showInvalidType();
+
+        void showInvalidColor();
     }
 
     interface Presenter extends BaseContract.Presenter<View, Router> {
