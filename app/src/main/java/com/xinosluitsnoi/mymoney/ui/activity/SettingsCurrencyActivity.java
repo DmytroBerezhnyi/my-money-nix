@@ -48,18 +48,6 @@ public class SettingsCurrencyActivity
         getPresenter().loadCurrencyList();
     }
 
-    @NonNull
-    @Override
-    protected SettingsCurrencyContract.Presenter createPresenter() {
-        SettingsCurrencyContract.Router router = new SettingsCurrencyRouter(this);
-        SharedPreferences sharedPreferences = getSettingsPreferences();
-
-        SettingsRepository settingsRepository =
-                new SharedSettingsRepository(getResources(), sharedPreferences);
-
-        return new SettingsCurrencyPresenter(router, settingsRepository);
-    }
-
     private void initView() {
         RecyclerView recyclerView = findViewById(R.id.rv_currencies);
         currencyAdapter = new CurrencyAdapter(this);
@@ -93,5 +81,17 @@ public class SettingsCurrencyActivity
     @Override
     public void hideProgress() {
         //none
+    }
+
+    @NonNull
+    @Override
+    protected SettingsCurrencyContract.Presenter createPresenter() {
+        SettingsCurrencyContract.Router router = new SettingsCurrencyRouter(this);
+        SharedPreferences sharedPreferences = getSettingsPreferences();
+
+        SettingsRepository settingsRepository =
+                new SharedSettingsRepository(getResources(), sharedPreferences);
+
+        return new SettingsCurrencyPresenter(router, settingsRepository);
     }
 }

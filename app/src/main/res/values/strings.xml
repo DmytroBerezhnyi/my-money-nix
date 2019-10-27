@@ -1,10 +1,12 @@
 <resources>
-    <string name="app_name">MoneyAccounting</string>
+    <string name="app_name">My money</string>
     <string name="default_currencies">USD,UAH,EUR</string>
+
     <string name="system">System</string>
     <string name="day">Day</string>
     <string name="night">Night</string>
 
+    <string name="title">Title</string>
     <string name="title_settings">Settings</string>
     <string name="title_categories">Categories</string>
     <string name="title_transaction">Transaction</string>
@@ -12,8 +14,23 @@
     <string name="title_theme">Theme</string>
     <string name="title_export">Export</string>
     <string name="title_import">Import</string>
-    <string name="currency_add_title">New currency</string>
+    <string name="title_all">All</string>
+    <string name="title_income">Income</string>
+    <string name="title_consume">Consume</string>
+    <string name="title_invalid_category_title">Wrong category title</string>
+    <string name="title_invalid_category_type">Wrong category type</string>
+    <string name="title_category_create">Create category</string>
+    <string name="title_currency_add">New currency</string>
+    <string name="title_save">Save</string>
+
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+
+    <string name="meow">Meow!</string>
+    <string name="empty_state_message">There is no one here. It\'s empty.</string>
+    <string name="empty_transaction_state">You don\'t have any transactions</string>
+    <string name="empty_category_state">You don\'t have any categories</string>
     <string name="currency_input_error">Invalid currency title</string>
+    <string name="title_invalid_category_color">Choose some color</string>
+
 </resources>

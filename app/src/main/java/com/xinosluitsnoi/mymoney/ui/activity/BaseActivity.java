@@ -63,6 +63,11 @@ public abstract class BaseActivity<P extends BaseContract.Presenter>
     }
 
     @NonNull
+    protected ViewGroup getContainer() {
+        return container;
+    }
+
+    @NonNull
     public SharedPreferences getSettingsPreferences() {
         return sharedPreferences;
     }

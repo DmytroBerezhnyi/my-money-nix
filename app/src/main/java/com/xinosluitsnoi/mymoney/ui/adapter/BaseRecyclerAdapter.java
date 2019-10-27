@@ -40,6 +40,11 @@ public abstract class BaseRecyclerAdapter<T>
         holder.bind(t);
     }
 
+    @NonNull
+    public List<T> getList() {
+        return list;
+    }
+
     @Override
     public int getItemCount() {
         return list.size();

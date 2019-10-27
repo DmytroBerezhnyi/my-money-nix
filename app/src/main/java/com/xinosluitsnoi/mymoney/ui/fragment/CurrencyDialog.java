@@ -90,6 +90,6 @@ public class CurrencyDialog extends BaseDialog<CurrencyDialogContract.Presenter>
 
     @Override
     protected int getDialogTitle() {
-        return R.string.currency_add_title;
+        return R.string.title_currency_add;
     }
 }

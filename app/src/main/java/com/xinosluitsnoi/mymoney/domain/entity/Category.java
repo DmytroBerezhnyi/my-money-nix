@@ -20,6 +20,9 @@ public class Category {
     @Type.Mode
     private int type;
 
+    public Category() {
+    }
+
     public Category(long id) {
         this.id = id;
     }

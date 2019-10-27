@@ -3,9 +3,9 @@ package com.xinosluitsnoi.mymoney.domain.database;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.xinosluitsnoi.mymoney.domain.database.DatabaseDescriptor.CategoryEntry;
-
 import com.xinosluitsnoi.mymoney.domain.database.entity.CategoryCursorWrapper;
 import com.xinosluitsnoi.mymoney.domain.entity.Category;
 import com.xinosluitsnoi.mymoney.domain.mapper.CategoryFromDBMapper;
@@ -56,8 +56,15 @@ public class DBCategoryRepository implements CategoryRepository {
     public List<Category> getAll(@Category.Type.Mode int type) {
         List<Category> categories = new ArrayList<>();
         Category category;
-        String query = "SELECT * FROM " + CategoryEntry.TABLE_NAME +
-                " WHERE " + CategoryEntry.TYPE + " = " + type;
+        String query;
+
+        if (type == Category.Type.Mode.ALL) {
+            query = "SELECT * FROM " + CategoryEntry.TABLE_NAME;
+        } else {
+            query = "SELECT * FROM " + CategoryEntry.TABLE_NAME + " WHERE " +
+                    CategoryEntry.TYPE + " = " + type +
+                    " OR " + CategoryEntry.TYPE + " = " + Category.Type.Mode.ALL;
+        }
 
         try (Cursor cursor = database.rawQuery(query, null);
              CategoryCursorWrapper cursorWrapper = new CategoryCursorWrapper(cursor)) {
