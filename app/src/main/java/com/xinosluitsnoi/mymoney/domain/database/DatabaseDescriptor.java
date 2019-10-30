@@ -20,8 +20,6 @@ public final class DatabaseDescriptor {
 
         public static final String DATE = "date";
 
-        public static final String TYPE = "type";
-
         public static final String fk_category = "fk_categories";
 
         public static final String CREATE_TABLE =
@@ -30,7 +28,6 @@ public final class DatabaseDescriptor {
                         TITLE + " TEXT NOT NULL," +
                         TOTAL + " REAL NOT NULL," +
                         DATE + " INTEGER(8) NOT NULL," +
-                        TYPE + " INTEGER(1) NOT NULL," +
                         CATEGORY + " INTEGER," +
                         "CONSTRAINT " + fk_category + " FOREIGN KEY(" + CATEGORY + ") REFERENCES " +
                         CategoryEntry.TABLE_NAME + "(" + _ID + "));";

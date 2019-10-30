@@ -1,11 +1,6 @@
 package com.xinosluitsnoi.mymoney.domain.entity;
 
-import java.lang.annotation.Retention;
-
-import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
-
-import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 public class Transaction {
 
@@ -13,10 +8,9 @@ public class Transaction {
 
     private double total;
 
-    @Type.Mode
-    private int type;
-
     private Category category;
+
+    private String title;
 
     private long date;
 
@@ -25,24 +19,24 @@ public class Transaction {
     }
 
     public Transaction(double total,
-                       @Type.Mode int type,
                        @NonNull Category category,
+                       @NonNull String title,
                        long date) {
         this.total = total;
-        this.type = type;
         this.category = category;
+        this.title = title;
         this.date = date;
     }
 
     public Transaction(long id,
                        double total,
-                       @Type.Mode int type,
                        @NonNull Category category,
+                       @NonNull String title,
                        long date) {
         this.id = id;
         this.total = total;
-        this.type = type;
         this.category = category;
+        this.title = title;
         this.date = date;
     }
 
@@ -62,13 +56,13 @@ public class Transaction {
         this.total = total;
     }
 
-    @Type.Mode
+    @Category.Type.Mode
     public int getType() {
-        return type;
+        return category.getType();
     }
 
-    public void setType(@Type.Mode int type) {
-        this.type = type;
+    public void setType(@Category.Type.Mode int type) {
+        category.setType(type);
     }
 
     @NonNull
@@ -80,26 +74,20 @@ public class Transaction {
         this.category = category;
     }
 
+    @NonNull
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(@NonNull String title) {
+        this.title = title;
+    }
+
     public long getDate() {
         return date;
     }
 
     public void setDate(long date) {
         this.date = date;
-    }
-
-    public static class Type {
-
-        @Retention(SOURCE)
-        @IntDef({
-                        Mode.INCOME,
-                        Mode.CONSUME,
-                })
-        public @interface Mode {
-
-            int INCOME = 0;
-
-            int CONSUME = 1;
-        }
     }
 }

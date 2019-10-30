@@ -13,8 +13,8 @@ public class TransactionFromDBMapper implements BaseMapper<Transaction, Transact
     public Transaction map(@NonNull TransactionCursorWrapper cursorWrapper) {
         return new Transaction(cursorWrapper.getId(),
                                cursorWrapper.getTotal(),
-                               cursorWrapper.getType(),
                                new Category(cursorWrapper.getCategoryId()),
+                               cursorWrapper.getTitle(),
                                cursorWrapper.getDate());
     }
 }

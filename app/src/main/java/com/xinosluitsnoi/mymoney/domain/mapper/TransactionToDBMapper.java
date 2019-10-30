@@ -15,8 +15,8 @@ public class TransactionToDBMapper implements BaseMapper<ContentValues, Transact
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(TransactionEntry.TOTAL, transaction.getTotal());
-        contentValues.put(TransactionEntry.TYPE, transaction.getType());
         contentValues.put(TransactionEntry.CATEGORY, transaction.getCategory().getId());
+        contentValues.put(TransactionEntry.TITLE, transaction.getTitle());
         contentValues.put(TransactionEntry.DATE, transaction.getDate());
 
         return contentValues;

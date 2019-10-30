@@ -4,40 +4,43 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.xinosluitsnoi.mymoney.R;
-import com.xinosluitsnoi.mymoney.domain.database.DBCategoryRepository;
 import com.xinosluitsnoi.mymoney.domain.database.DBHelper;
 import com.xinosluitsnoi.mymoney.domain.entity.Category;
-import com.xinosluitsnoi.mymoney.domain.repository.CategoryRepository;
-import com.xinosluitsnoi.mymoney.mvp.contract.CategoryListContract;
-import com.xinosluitsnoi.mymoney.mvp.presenter.CategoryListPresenter;
-import com.xinosluitsnoi.mymoney.ui.adapter.CategoryRecyclerAdapter;
-import com.xinosluitsnoi.mymoney.ui.router.CategoryListRouter;
+import com.xinosluitsnoi.mymoney.domain.entity.Transaction;
+import com.xinosluitsnoi.mymoney.domain.mock.MockTransactionRepository;
+import com.xinosluitsnoi.mymoney.domain.repository.TransactionRepository;
+import com.xinosluitsnoi.mymoney.mvp.contract.TransactionListContract;
+import com.xinosluitsnoi.mymoney.mvp.presenter.TransactionListPresenter;
+import com.xinosluitsnoi.mymoney.ui.adapter.BaseRecyclerAdapter;
+import com.xinosluitsnoi.mymoney.ui.adapter.TransactionRecyclerAdapter;
+import com.xinosluitsnoi.mymoney.ui.router.TransactionListRouter;
 
 import java.util.List;
 import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CategoryListFragment extends BasePagerFragment<CategoryListContract.Presenter>
-        implements CategoryListContract.View {
+public class TransactionListFragment extends BasePagerFragment<TransactionListPresenter>
+        implements TransactionListContract.View {
 
-    private static final String mode_arg = "mode";
+    private static final String mode_arg = "mode_arg";
 
     private View emptyStateView;
 
+    private BaseRecyclerAdapter<Transaction> recyclerAdapter;
+
     private RecyclerView recyclerView;
 
-    private CategoryRecyclerAdapter recyclerAdapter;
-
-    public static CategoryListFragment newInstance(@Category.Type.Mode int type) {
+    public static TransactionListFragment newInstance(@Category.Type.Mode int type) {
 
         Bundle args = new Bundle();
         args.putInt(mode_arg, type);
 
-        CategoryListFragment fragment = new CategoryListFragment();
+        TransactionListFragment fragment = new TransactionListFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -48,15 +51,16 @@ public class CategoryListFragment extends BasePagerFragment<CategoryListContract
 
         emptyStateView = view.findViewById(R.id.empty_transaction_state);
         recyclerView = view.findViewById(R.id.rv_transactions);
-        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
-        recyclerAdapter = new CategoryRecyclerAdapter(getPresenter());
+
+        recyclerAdapter = new TransactionRecyclerAdapter();
         recyclerView.setAdapter(recyclerAdapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getPresenter().loadCategoryList(Objects.requireNonNull(getArguments()).getInt(mode_arg));
+        getPresenter().loadTransactionList(Objects.requireNonNull(getArguments()).getInt(mode_arg));
     }
 
     @Override
@@ -66,12 +70,13 @@ public class CategoryListFragment extends BasePagerFragment<CategoryListContract
     }
 
     @Override
-    public void showList(@NonNull List<Category> categories) {
+    public void showList(@NonNull List<Transaction> transactions) {
         emptyStateView.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
-        recyclerAdapter.swabData(categories);
+        recyclerAdapter.swabData(transactions);
     }
 
+    @StringRes
     @Override
     public int getToolbarTitleResource() {
 
@@ -93,16 +98,17 @@ public class CategoryListFragment extends BasePagerFragment<CategoryListContract
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_category_list;
+        return R.layout.fragment_transaction_list;
     }
 
     @NonNull
     @Override
-    protected CategoryListContract.Presenter createPresenter() {
-        CategoryListContract.Router router = new CategoryListRouter(requireBaseActivity());
-
+    protected TransactionListPresenter createPresenter() {
         DBHelper dbHelper = new DBHelper(requireContext());
-        CategoryRepository categoryRepository = new DBCategoryRepository(dbHelper);
-        return new CategoryListPresenter(router, categoryRepository);
+        TransactionRepository transactionRepository = new MockTransactionRepository();
+
+        TransactionListContract.Router router = new TransactionListRouter(requireBaseActivity());
+
+        return new TransactionListPresenter(router, transactionRepository);
     }
 }
