@@ -83,8 +83,8 @@ class DBTransactionRepository(dbHelper: DBHelper) : TransactionRepository {
             "SELECT * FROM ${TransactionEntry.TABLE_NAME}"
         } else {
             "SELECT * FROM ${TransactionEntry.TABLE_NAME} " +
-                    "WHERE ${TransactionEntry.fk_category} = " +
-                    "(SELECT * FROM ${CategoryEntry._ID} WHERE " +
+                    "WHERE ${TransactionEntry.CATEGORY} = " +
+                    "(SELECT ${CategoryEntry._ID} FROM ${CategoryEntry.TABLE_NAME} WHERE " +
                     "$type = ${CategoryEntry.TYPE} OR " +
                     "${CategoryEntry.TYPE} = ${Category.Type.Mode.ALL})"
         }

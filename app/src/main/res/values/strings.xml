@@ -33,4 +33,6 @@
     <string name="currency_input_error">Invalid currency title</string>
     <string name="title_invalid_category_color">Choose some color</string>
 
+    <string name="yesterday">Yesterday</string>
+    <string name="today">Today at</string>
 </resources>

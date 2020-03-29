@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.xinosluitsnoi.mymoney.R;
-import com.xinosluitsnoi.mymoney.domain.database.DBHelper;
 import com.xinosluitsnoi.mymoney.domain.entity.Category;
 import com.xinosluitsnoi.mymoney.domain.entity.Transaction;
 import com.xinosluitsnoi.mymoney.domain.mock.MockTransactionRepository;
@@ -21,7 +20,7 @@ import java.util.Objects;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TransactionListFragment extends BasePagerFragment<TransactionListPresenter>
@@ -54,7 +53,7 @@ public class TransactionListFragment extends BasePagerFragment<TransactionListPr
 
         recyclerAdapter = new TransactionRecyclerAdapter();
         recyclerView.setAdapter(recyclerAdapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
     }
 
     @Override
@@ -104,7 +103,8 @@ public class TransactionListFragment extends BasePagerFragment<TransactionListPr
     @NonNull
     @Override
     protected TransactionListPresenter createPresenter() {
-        DBHelper dbHelper = new DBHelper(requireContext());
+        //DBHelper dbHelper = new DBHelper(requireContext());
+        //TransactionRepository transactionRepository = new DBTransactionRepository(dbHelper);
         TransactionRepository transactionRepository = new MockTransactionRepository();
 
         TransactionListContract.Router router = new TransactionListRouter(requireBaseActivity());

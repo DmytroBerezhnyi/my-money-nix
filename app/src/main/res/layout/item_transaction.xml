@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            app:srcCompat="@drawable/ic_arrow_right_24dp" />
+            tools:srcCompat="@drawable/ic_arrow_transaction_income_24dp"
+            tools:tint="@color/colorAccent"/>
 
         <TextView
             android:id="@+id/tv_transaction_title"

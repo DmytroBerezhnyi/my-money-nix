@@ -31,10 +31,17 @@ public class MockTransactionRepository implements TransactionRepository {
                                                    179,
                                                    category2,
                                                    "From my dear company",
-                                                   System.currentTimeMillis() - (1000 * 60 * 60 * 2));
+                                                   System.currentTimeMillis() - (60 * 60 * 24 * 1000 * 5));
+
+        Transaction transaction3 = new Transaction(3,
+                                                   500,
+                                                   category1,
+                                                   "To)",
+                                                   System.currentTimeMillis() - (60 * 60 * 24 * 1000));
 
         add(transaction1);
         add(transaction2);
+        add(transaction3);
     }
 
     @NonNull
