@@ -9,6 +9,8 @@ public interface BaseContract {
 
         void onError(@Nullable Throwable throwable);
 
+        void showSnack(@NonNull CharSequence message);
+
         void showProgress();
 
         void hideProgress();

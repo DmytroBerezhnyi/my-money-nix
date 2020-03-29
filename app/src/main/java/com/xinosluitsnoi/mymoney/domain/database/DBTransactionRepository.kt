@@ -15,21 +15,13 @@ import com.xinosluitsnoi.mymoney.domain.repository.TransactionRepository
 
 import java.util.ArrayList
 
-class DBTransactionRepository(dbHelper: DBHelper) : TransactionRepository {
+class DBTransactionRepository(dbHelper: DBHelper, private val categoryRepository: CategoryRepository) : TransactionRepository {
 
     private val database: SQLiteDatabase = dbHelper.readableDatabase
 
-    private val categoryRepository: CategoryRepository
+    private val transactionToDBMapper = TransactionToDBMapper()
 
-    private val transactionToDBMapper: TransactionToDBMapper
-
-    private val transactionFromDBMapper: TransactionFromDBMapper
-
-    init {
-        categoryRepository = DBCategoryRepository(dbHelper)
-        transactionToDBMapper = TransactionToDBMapper()
-        transactionFromDBMapper = TransactionFromDBMapper()
-    }
+    private val transactionFromDBMapper = TransactionFromDBMapper()
 
     override fun add(transaction: Transaction) {
         val values = transactionToDBMapper.map(transaction)

@@ -76,9 +76,13 @@ public abstract class BaseActivity<P extends BaseContract.Presenter>
     public void onError(@Nullable Throwable throwable) {
         String message = throwable == null ? "Something went wrong" : throwable.getMessage();
 
-        Snackbar.make(container, message, Snackbar.LENGTH_LONG)
-                .show();
+        Snackbar.make(container, message, Snackbar.LENGTH_LONG).show();
         Log.e(TAG, "onError: ", throwable);
+    }
+
+    @Override
+    public void showSnack(@NonNull CharSequence message) {
+        Snackbar.make(container, message, Snackbar.LENGTH_LONG).show();
     }
 
     @LayoutRes

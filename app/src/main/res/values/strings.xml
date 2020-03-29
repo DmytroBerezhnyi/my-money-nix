@@ -20,6 +20,7 @@
     <string name="title_invalid_category_title">Wrong category title</string>
     <string name="title_invalid_category_type">Wrong category type</string>
     <string name="title_category_create">Create category</string>
+    <string name="title_transaction_create">Create transaction</string>
     <string name="title_currency_add">New currency</string>
     <string name="title_save">Save</string>
 
@@ -35,4 +36,7 @@
 
     <string name="yesterday">Yesterday</string>
     <string name="today">Today at</string>
+    <string name="title_invalid_description_transaction">Description can\'t be empty</string>
+    <string name="title_invalid_category_transaction">Choose some category</string>
+    <string name="title_invalid_transaction_transaction">Total can\'t be empty</string>
 </resources>

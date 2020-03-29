@@ -27,15 +27,11 @@ public class CategoryCreateActivity extends BaseActivity<CategoryCreateContract.
 
     private EditText etTitle;
 
-    private RecyclerView rvColors;
-
     private ColorRecyclerAdapter adapterColors;
 
     private CheckBox cbIncome;
 
     private CheckBox cbConsume;
-
-    private Button btnSave;
 
     private CategoryFromBundleMapper categoryFromDBMapper;
 
@@ -49,10 +45,10 @@ public class CategoryCreateActivity extends BaseActivity<CategoryCreateContract.
 
     private void init() {
         etTitle = findViewById(R.id.et_category_title);
-        rvColors = findViewById(R.id.rv_category_colors);
+        RecyclerView rvColors = findViewById(R.id.rv_category_colors);
         cbIncome = findViewById(R.id.cb_category_income);
         cbConsume = findViewById(R.id.cb_category_consume);
-        btnSave = findViewById(R.id.btn_category_save);
+        Button btnSave = findViewById(R.id.btn_category_save);
 
         adapterColors = new ColorRecyclerAdapter(getResources());
         rvColors.setAdapter(adapterColors);
