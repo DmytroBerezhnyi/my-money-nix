@@ -46,8 +46,8 @@ public class CategoryListFragment extends BasePagerFragment<CategoryListContract
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        emptyStateView = view.findViewById(R.id.empty_category_state);
-        recyclerView = view.findViewById(R.id.rv_categories);
+        emptyStateView = view.findViewById(R.id.empty_transaction_state);
+        recyclerView = view.findViewById(R.id.rv_transactions);
         recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
         recyclerAdapter = new CategoryRecyclerAdapter(getPresenter());
         recyclerView.setAdapter(recyclerAdapter);

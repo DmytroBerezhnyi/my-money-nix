@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 public interface TransactionRepository {
 
     @NonNull
-    List<Transaction> getAll(@Transaction.Type.Mode int type);
+    List<Transaction> getAll(@Category.Type.Mode int type);
 
     @NonNull
     List<Transaction> getTransactionsByCategory(@NonNull Category category);

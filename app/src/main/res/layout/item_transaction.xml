@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/radius_corner_cardview"
+    app:cardUseCompatPadding="true"
+    android:foreground="?attr/selectableItemBackground"
+    tools:context=".ui.activity.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_transaction_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            tools:srcCompat="@drawable/ic_arrow_transaction_income_24dp"
+            tools:tint="@color/colorAccent"/>
+
+        <TextView
+            android:id="@+id/tv_transaction_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/iv_transaction_icon"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/tv_transaction_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_transaction_title"
+            android:layout_alignStart="@+id/tv_transaction_title"
+            android:layout_marginTop="8dp"
+            tools:text="Total" />
+
+        <TextView
+            android:id="@+id/tv_transaction_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_transaction_total"
+            android:layout_alignStart="@+id/tv_transaction_title"
+            android:layout_marginTop="8dp"
+            tools:text="Category" />
+
+        <TextView
+            android:id="@+id/tv_transaction_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            tools:text="Date" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

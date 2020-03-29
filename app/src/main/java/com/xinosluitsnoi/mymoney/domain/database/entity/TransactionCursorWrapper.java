@@ -4,7 +4,10 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 
 import com.xinosluitsnoi.mymoney.domain.database.DatabaseDescriptor.TransactionEntry;
+import com.xinosluitsnoi.mymoney.domain.entity.Category;
 import com.xinosluitsnoi.mymoney.domain.entity.Transaction;
+
+import androidx.annotation.NonNull;
 
 public class TransactionCursorWrapper extends CursorWrapper {
 
@@ -12,9 +15,9 @@ public class TransactionCursorWrapper extends CursorWrapper {
 
     private final int total;
 
-    private final int type;
-
     private final int category;
+
+    private final int title;
 
     private final int date;
 
@@ -23,8 +26,8 @@ public class TransactionCursorWrapper extends CursorWrapper {
 
         id = getColumnIndex(TransactionEntry._ID);
         total = getColumnIndex(TransactionEntry.TOTAL);
-        type = getColumnIndex(TransactionEntry.TYPE);
         category = getColumnIndex(TransactionEntry.CATEGORY);
+        title = getColumnIndex(TransactionEntry.TITLE);
         date = getColumnIndex(TransactionEntry.DATE);
     }
 
@@ -36,13 +39,13 @@ public class TransactionCursorWrapper extends CursorWrapper {
         return getDouble(total);
     }
 
-    @Transaction.Type.Mode
-    public int getType() {
-        return getInt(type);
-    }
-
     public int getCategoryId() {
         return getInt(category);
+    }
+
+    @NonNull
+    public String getTitle() {
+        return getString(title);
     }
 
     public long getDate() {

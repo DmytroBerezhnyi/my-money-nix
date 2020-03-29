@@ -43,7 +43,7 @@ public class CategoryFragment
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
-    }git
+    }
 
     @Override
     public int getToolbarTitleResource() {
