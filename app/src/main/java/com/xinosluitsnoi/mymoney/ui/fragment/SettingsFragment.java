@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.xinosluitsnoi.mymoney.R;
 import com.xinosluitsnoi.mymoney.domain.entity.Currency;
 import com.xinosluitsnoi.mymoney.domain.entity.Theme;
@@ -80,5 +81,10 @@ public class SettingsFragment
                 new SharedSettingsRepository(getResources(), sharedPreferences);
 
         return new SettingsPresenter(router, settingsRepository);
+    }
+
+    @Override
+    public void showSnack(@NonNull CharSequence message) {
+        Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show();
     }
 }

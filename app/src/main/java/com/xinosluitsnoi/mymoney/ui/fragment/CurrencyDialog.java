@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.xinosluitsnoi.mymoney.R;
 import com.xinosluitsnoi.mymoney.domain.repository.SettingsRepository;
 import com.xinosluitsnoi.mymoney.domain.shared.SharedSettingsRepository;
@@ -91,5 +92,10 @@ public class CurrencyDialog extends BaseDialog<CurrencyDialogContract.Presenter>
     @Override
     protected int getDialogTitle() {
         return R.string.title_currency_add;
+    }
+
+    @Override
+    public void showSnack(@NonNull CharSequence message) {
+        Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show();
     }
 }

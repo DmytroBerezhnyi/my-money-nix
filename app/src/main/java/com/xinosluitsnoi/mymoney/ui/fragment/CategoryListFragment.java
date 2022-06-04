@@ -3,6 +3,7 @@ package com.xinosluitsnoi.mymoney.ui.fragment;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.xinosluitsnoi.mymoney.R;
 import com.xinosluitsnoi.mymoney.domain.database.DBCategoryRepository;
 import com.xinosluitsnoi.mymoney.domain.database.DBHelper;
@@ -104,5 +105,10 @@ public class CategoryListFragment extends BasePagerFragment<CategoryListContract
         DBHelper dbHelper = new DBHelper(requireContext());
         CategoryRepository categoryRepository = new DBCategoryRepository(dbHelper);
         return new CategoryListPresenter(router, categoryRepository);
+    }
+
+    @Override
+    public void showSnack(@NonNull CharSequence message) {
+        Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show();
     }
 }

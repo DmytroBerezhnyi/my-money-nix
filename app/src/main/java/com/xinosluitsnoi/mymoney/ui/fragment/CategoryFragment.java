@@ -3,6 +3,7 @@ package com.xinosluitsnoi.mymoney.ui.fragment;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.xinosluitsnoi.mymoney.R;
 import com.xinosluitsnoi.mymoney.mvp.contract.CategoryContract;
@@ -60,5 +61,10 @@ public class CategoryFragment
     protected CategoryContract.Presenter createPresenter() {
         CategoryContract.Router router = new CategoryRouter(requireBaseActivity());
         return new CategoryPresenter(router);
+    }
+
+    @Override
+    public void showSnack(@NonNull CharSequence message) {
+        Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show();
     }
 }
